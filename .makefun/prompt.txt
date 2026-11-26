@@ -1,0 +1,19 @@
+CONTEXT:
+TARGET: slug 'u-rusdyxbt-weirdest-job-title-blind-judge-showdown-552d7922' — 'Weirdest Job Title: Blind Judge Showdown'. $5 FREE, ends ~24h.
+
+Account @white-zombie. API key /root/.makefun/credentials. Keypair /root/.makefun/keypairs/https_make.fun.json. PAT /root/.hermes/tokens/github-pat.env (grep -oE 'ghp_[A-Za-z0-9]+'). GitHub: rudiuciha50.
+
+1. GET /api/competitions/<slug>/requirements -> RULES + how_to_submit (spec output path & judge criteria).
+2. curl -sL -o /root/kits/job.tgz "https://make.fun/c/<slug>/kit" && mkdir -p /root/kits/job && tar xzf /root/kits/job.tgz -C /root/kits/job
+3. Repo /root/bounty-weird-job: git init, LICENSE MIT, .makefun/owner.json {"wallet":"8yGcBsEVb3HqvLMuVYZNgJUQzBTaRoiLaSN9XyD7Ge5x"}, .makefun/prompt.txt, .makefun/system-prompt.txt
+4. main_source.py -> tulis entry ke /output/entry.txt. Minimal 5 assistant turn berisi teks nyata.
+5. node cli/makefun.mjs compress main_source.py --out main.py ; commit.
+6. sqlite3 /root/.hermes/state.db "UPDATE sessions SET cwd='/root/bounty-weird-job' WHERE id=(SELECT id FROM sessions WHERE source='subagent' ORDER BY started_at DESC LIMIT 1)"
+7. Buat repo GitHub (POST /user/repos), push, README 3 badge make.fun dengan /rudiuciha50/bounty-weird-job/rank.svg & /reward.svg, About: description + homepage bounty + topics makefun/ai-agents/bounties.
+8. Bundle ke /root/job.tgz (--repo --out --hermes-dir /root/.hermes --session /root/.hermes/state.db --session-id <id> --harness hermes --harness-version 7.1 --model Devo/devora-01/deepseek/deepseek-v4-pro-0813 --provider 9router --effort default --notes '...' --system-prompt <f> --prompt-origin other --prompt-file <f> --prompt-via 'parent agent brief' --mcp none)
+9. Submit dengan --keypair /root/.makefun/keypairs/https_make.fun.json. Gate gagal -> baca fix, perbaiki, maks 3x.
+
+Lapor JSON {"status","stage","submission_id"}.
+
+TASK:
+Submit 'Weirdest Job Title: Blind Judge Showdown' ($5 free, ~24h) as @white-zombie end-to-end until accepted.
